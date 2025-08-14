@@ -1,7 +1,11 @@
 from flask import Flask, render_template
+from app.auth import auth
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = "4d52ewmff33gg4577n"  # Needed for flash messages & forms
+
+    app.register_blueprint(auth)
 
     @app.route("/")
     def home():
