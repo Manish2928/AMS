@@ -9,6 +9,7 @@ email-validator==2.2.0
 Flask-SQLAlchemy==3.1.1
 Flask-Migrate==4.0.7
 SQLAlchemy==2.0.30
+mysql-connector-python
 pymysql==1.1.1           # If using MySQL
 # psycopg2-binary==2.9.9   # If using PostgreSQL
 

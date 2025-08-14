@@ -7,6 +7,10 @@ def create_app():
 
     app.register_blueprint(auth)
 
+    # Import and register routes
+    from app.routes.test_db import test_db
+    app.register_blueprint(test_db)
+
     @app.route("/")
     def home():
         return render_template("home.html")
