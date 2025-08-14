@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Attendance Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('about')}}">About</a></li>
+                <li><a href="{{url_for('contact')}}">Contact</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; {{ 2025 }} Attendance Management System</p>
+    </footer>
+
+</body>
+</html>
