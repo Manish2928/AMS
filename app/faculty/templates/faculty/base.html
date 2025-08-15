@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Attendance Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('faculty.report')}}">Report</a></li>
+                <li><a href="{{url_for('faculty.students')}}">Students</a></li>
+                <li><a href="{{url_for('faculty.change_password')}}">Change Password</a></li>
+                <li><a href="{{url_for('faculty.dashboard')}}">Dashboard</a></li>
+                <li><a href="{{url_for('faculty.leave')}}">Leave</a></li>
+                <li><a href="{{ url_for('faculty.profile')}}">Profile</a></li>
+                <li><a href="{{ url_for('faculty.generate_qr')}}">Generate QR</a></li>
+                <li><a href="{{ url_for('faculty.qr_generated')}}">QR Generated</a></li>
+                <li><a href="{{ url_for('faculty.timetable')}}">Timetable</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; {{ 2025 }} Attendance Management System</p>
+    </footer>
+
+</body>
+</html>

@@ -1,6 +1,9 @@
 from flask import Flask, render_template
 from app.auth import auth
 from app.student import student
+from app.faculty import faculty
+
+
 
 
 def create_app():
@@ -9,6 +12,7 @@ def create_app():
 
     app.register_blueprint(auth)
     app.register_blueprint(student)
+    app.register_blueprint(faculty)
 
     # Import and register routes
     from app.routes.test_db import test_db
