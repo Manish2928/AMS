@@ -1,11 +1,14 @@
 from flask import Flask, render_template
 from app.auth import auth
+from app.student import student
+
 
 def create_app():
     app = Flask(__name__)
     app.secret_key = "4d52ewmff33gg4577n"  # Needed for flash messages & forms
 
     app.register_blueprint(auth)
+    app.register_blueprint(student)
 
     # Import and register routes
     from app.routes.test_db import test_db
