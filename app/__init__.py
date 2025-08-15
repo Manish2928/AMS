@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from app.auth import auth
 from app.student import student
 from app.faculty import faculty
-
+from app.admin import admin
 
 
 
@@ -13,6 +13,8 @@ def create_app():
     app.register_blueprint(auth)
     app.register_blueprint(student)
     app.register_blueprint(faculty)
+    app.register_blueprint(admin)
+
 
     # Import and register routes
     from app.routes.test_db import test_db

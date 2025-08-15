@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Attendance Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('admin.announcements')}}">Announcements</a></li>
+                <li><a href="{{url_for('admin.dashboard')}}">Dashboard</a></li>
+                <li><a href="{{url_for('admin.change_password')}}">Change Password</a></li>
+                <li><a href="{{url_for('admin.ip_management')}}">IP Management</a></li>
+                <li><a href="{{url_for('admin.leave_management')}}">Leave Management</a></li>
+                <li><a href="{{url_for('admin.manage_classes')}}">Manage Classes</a></li>
+                <li><a href="{{ url_for('admin.manage_courses')}}">Manage Courses</a></li>
+                <li><a href="{{ url_for('admin.manage_faculty')}}">Manage Faculty</a></li>
+                <li><a href="{{ url_for('admin.manage_students')}}">Manage Students</a></li>
+                <li><a href="{{ url_for('admin.manage_subjects')}}">Manage Subjects</a></li>
+                <li><a href="{{ url_for('admin.manage_timetable')}}">Manage Timetable</a></li>
+                <li><a href="{{ url_for('admin.settings')}}">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; {{ 2025 }} Attendance Management System</p>
+    </footer>
+
+</body>
+</html>
