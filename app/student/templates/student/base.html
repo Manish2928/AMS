@@ -13,12 +13,13 @@
             <ul>
                 <li><a href="{{url_for('student.attendance')}}">Attendance</a></li>
                 <li><a href="{{url_for('student.change_ip')}}">Chnage IP</a></li>
-                <li><a href="{{url_for('student.change_password')}}">Change Password</a></li>
+                <li><a href="{{url_for('auth.change_password')}}">Change Password</a></li>
                 <li><a href="{{url_for('student.dashboard')}}">Dashboard</a></li>
                 <li><a href="{{url_for('student.leave')}}">Leave</a></li>
                 <li><a href="{{ url_for('student.profile')}}">Profile</a></li>
                 <li><a href="{{ url_for('student.scan_qr')}}">Scanner</a></li>
                 <li><a href="{{ url_for('student.timetable')}}">Timetable</a></li>
+                <li><a href="{{ url_for('auth.logout')}}">Logout</a></li>
             </ul>
         </nav>
     </header>

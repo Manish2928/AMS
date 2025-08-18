@@ -1,55 +1,81 @@
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template
+from app.utils.decorators import login_required, roles_required
 from . import admin
 
-@admin.route("/admin/announcements")
+@admin.route("/announcements")
+@login_required
+@roles_required("admin")
 def announcements():
     return render_template("admin/announcements.html")
 
-@admin.route('/admin/base')
+@admin.route('/base')
+@login_required
+@roles_required("admin")
 def base():
     return render_template("admin/base.html")
 
-@admin.route("/admin/dashboard")
+@admin.route("/dashboard")
+@login_required
+@roles_required("admin")
 def dashboard():
     return render_template("admin/dashboard.html")
 
-@admin.route("/admin/change_password")
+@admin.route("/change_password")
+@login_required
+@roles_required("admin")
 def change_password():
     return render_template("admin/change_password.html")
 
-
-@admin.route("/admin/ip_management")
+@admin.route("/ip_management")
+@login_required
+@roles_required("admin")
 def ip_management():
     return render_template("admin/ip_management.html")
 
-@admin.route("/admin/leave_management")
+@admin.route("/leave_management")
+@login_required
+@roles_required("admin")
 def leave_management():
     return render_template("admin/leave_management.html")
 
-@admin.route("/admin/manage_classes")
+@admin.route("/manage_classes")
+@login_required
+@roles_required("admin")
 def manage_classes():
     return render_template("admin/manage_classes.html")
 
-@admin.route("/admin/manage_courses")
+@admin.route("/manage_courses")
+@login_required
+@roles_required("admin")
 def manage_courses():
     return render_template("admin/manage_courses.html")
 
-@admin.route("/admin/manage_faculty")
+@admin.route("/manage_faculty")
+@login_required
+@roles_required("admin")
 def manage_faculty():
     return render_template("admin/manage_faculty.html")
 
-@admin.route("/admin/manage_students")
+@admin.route("/manage_students")
+@login_required
+@roles_required("admin")
 def manage_students():
     return render_template("admin/manage_students.html")
 
-@admin.route("/admin/manage_subjects")
+@admin.route("/manage_subjects")
+@login_required
+@roles_required("admin")
 def manage_subjects():
     return render_template("admin/manage_subject.html")
 
-@admin.route("/admin/manage_timetable")
+@admin.route("/manage_timetable")
+@login_required
+@roles_required("admin")
 def manage_timetable():
     return render_template("admin/manage_timetable.html")
 
-@admin.route("/admin/settings")
+@admin.route("/settings")
+@login_required
+@roles_required("admin")
 def settings():
     return render_template("admin/settings.html")

@@ -1,45 +1,28 @@
 
-{% block title %}Register Student{% endblock %}
+{% block title %}Register {{ user_type|capitalize }} - AMS{% endblock %}
 {% block content %}
+<h2>Create New {{ user_type|capitalize }}</h2>
 
-<h2>Create New Student</h2>
 <form method="POST">
-    <label>Name:</label>
-    <input type="text" name="name" required>
+  {{ form.hidden_tag() }}
 
-    <label>Enrollment ID:</label>
-    <input type="text" name="enrollment_id" required>
+  {% if user_type == 'student' %}
+    <div>{{ form.full_name.label }} {{ form.full_name() }}</div>
+    <div>{{ form.enrollment_id.label }} {{ form.enrollment_id() }}</div>
+    <div>{{ form.course_id.label }} {{ form.course_id() }}</div>
+    <div>{{ form.department_id.label }} {{ form.department_id() }}</div>
+    <div>{{ form.year.label }} {{ form.year() }}</div>
+    <div>{{ form.semester.label }} {{ form.semester() }}</div>
+    <div>{{ form.section.label }} {{ form.section() }}</div>
+    <div>{{ form.admission_number.label }} {{ form.admission_number() }}</div>
+  {% else %}
+    <div>{{ form.faculty_name.label }} {{ form.faculty_name() }}</div>
+    <div>{{ form.faculty_id_code.label }} {{ form.faculty_id_code() }}</div>
+    <div>{{ form.department_id.label }} {{ form.department_id() }}</div>
+  {% endif %}
 
-    <label>Division:</label>
-    <input type="text" name="div" required>
-
-    <label>Course:</label>
-    <input type="text" name="course" required>
-
-    <label>Gender:</label>
-    <select name="gender" required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-    </select>
-
-    <label>Admission Number:</label>
-    <input type="text" name="admission_number" required>
-
-    <label>Year of Admission:</label>
-    <input type="number" name="year_of_admission" min="2000" max="{{ current_year }}" required>
-
-    <label>Department:</label>
-    <input type="text" name="department" required>
-
-    <label>Email:</label>
-    <input type="email" name="email" required>
-
-    <label>Password:</label>
-    <input type="password" name="password" required>
-
-    <button type="submit">Create</button>
+  <div>{{ form.email.label }} {{ form.email() }}</div>
+  <div>{{ form.password.label }} {{ form.password() }}</div>
+  <div>{{ form.submit() }}</div>
 </form>
-
 {% endblock %}
