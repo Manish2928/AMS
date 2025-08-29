@@ -1,6 +1,8 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for, flash
 from app.utils.decorators import login_required, roles_required
 from . import admin
+from .forms import CreateCourseForm
+from app.db_queries import admin_queries
 
 @admin.route("/announcements")
 @login_required
@@ -44,11 +46,30 @@ def leave_management():
 def manage_classes():
     return render_template("admin/manage_classes.html")
 
-@admin.route("/manage_courses")
+@admin.route("/manage_courses", methods=["GET", "POST"])
 @login_required
 @roles_required("admin")
 def manage_courses():
-    return render_template("admin/manage_courses.html")
+    form = CreateCourseForm()
+    if request.method == "POST" and form.validate_on_submit():
+        result = admin_queries.create_course(
+            course_name=form.course_name.data.strip(),
+            course_code=form.course_code.data.strip(),
+            department_id=form.department_id.data,
+            description=(form.description.data or "").strip() or None,
+        )
+
+        # Handle return type
+        if isinstance(result, dict) and "error" in result:
+            flash(result["error"], "warning")   # ⚠️ Wrong department etc.
+        elif isinstance(result, dict) and "course_id" in result:
+            flash("Course created successfully!", "success")
+        else:
+            flash("Failed to create course.", "danger")
+
+        return redirect(url_for("admin.manage_courses"))
+
+    return render_template("admin/manage_courses.html", form=form)
 
 @admin.route("/manage_faculty")
 @login_required

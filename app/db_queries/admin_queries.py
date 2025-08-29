@@ -200,3 +200,40 @@ def create_faculty_profile(user_id: int, faculty_name: str, faculty_id_code: str
         cur.close(); conn.close()
 
 
+# -------- COURSES ----------
+def create_course(course_name: str, course_code: str, department_id: int, description: str | None = None):
+    conn = get_db_connection()
+    if not conn:
+        return None
+    
+    try:
+        cur = conn.cursor(dictionary=True)
+
+         # Optional: Check duplicate manually before insert
+        cur.execute("SELECT course_id FROM COURSES WHERE course_code = %s AND department_id = %s", 
+                    (course_code, department_id))
+        existing = cur.fetchone()
+        if existing:
+            return(f"Course with code '{course_code}' already exists in this department.", "warning")
+            
+        
+        # ✅ Check if department exists
+        cur.execute("SELECT 1 FROM departments WHERE department_id = %s", (department_id,))
+        if cur.fetchone() is None:
+            return {"error": f"Department ID {department_id} does not exist. Please enter a valid department."}
+
+        # ✅ Insert course only if department is valid
+        cur.execute(
+            """
+            INSERT INTO courses (course_name, course_code, department_id, description)
+            VALUES (%s, %s, %s, %s)
+            """,
+            (course_name, course_code, department_id, description)
+        )
+        conn.commit()
+        return {"course_id": cur.lastrowid}
+
+    finally:
+        cur.close()
+        conn.close()
+
